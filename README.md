@@ -41,15 +41,3 @@ Event Verification: The contract supports verifying ticket ownership and usage.
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.
-
-
-
-
-
-
-
-
-
-
-
-ChatGPT can make mistakes. Check important info.
