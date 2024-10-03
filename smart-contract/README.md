@@ -1,6 +1,10 @@
-## Foundry
+## NFTICKETING
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+**An nft contract built on solidity and foundry.**
+
+
+**Contract Address.**
+0xD050913bd914849Fb0d6532cb462F274Eb3deeBD
 
 Foundry consists of:
 
@@ -45,10 +49,12 @@ $ forge snapshot
 $ anvil
 ```
 
+
 ### Deploy
+Have an env file in smart-contracts folder and include PRIVATE-KEY 
 
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+$ forge script Ticketing.s.sol --rpc-url <YOUR PRC URL> --broadcast -vvv
 ```
 
 ### Cast
