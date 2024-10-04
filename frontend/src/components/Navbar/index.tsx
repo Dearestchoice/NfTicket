@@ -12,7 +12,7 @@ const Navbar = () => {
   const account = useAccount()
 
   return (
-    <nav className="flex gap-2 items-center justify-between px-2 sm:px-4 md:px-6 py-2 md:py-4">
+    <nav className="flex gap-2 items-center justify-between px-4 sm:px-6 lg:px-8 py-2 md:py-4">
       <div className="flex items-center gap-2">
         <img src="/images/nfticket.webp" alt="" className="h-12 " />
       </div>
