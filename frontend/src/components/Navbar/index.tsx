@@ -1,5 +1,6 @@
 import { useAccount } from "wagmi"
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { NavLink } from "react-router-dom";
 
 import { Sheet, SheetTrigger, SheetContent, SheetTitle, SheetDescription } from "../ui/sheet"
 import { Button } from "../ui/button"
@@ -7,6 +8,10 @@ import { Button } from "../ui/button"
 import LoginButton from "./LoginButton"
 import SignupButton from "./SignupButton"
 import { MenuIcon } from "./Icons"
+
+const linkClass = ({ isActive }: { isActive: boolean }) => {
+  return isActive ? "text-white" : "text-[#878787]";
+};
 
 const Navbar = () => {
   const account = useAccount()
@@ -17,21 +22,26 @@ const Navbar = () => {
         <img src="/images/nfticket.webp" alt="" className="h-12 " />
       </div>
       <ul className="hidden lg:flex list-none gap-6 xl:gap-10 items-center justify-between font-medium font-poppins text-lg xl:text-xl">
-        <li className="pointer">
-          Home
-        </li>
-        <li className="pointer">
-          Events
-        </li>
-        <li className="pointer">
-          Mint Ticket
-        </li>
-        <li className="pointer">
-          My Tickets
-        </li>
-        <li className="pointer">
-          Marketplace
-        </li>
+        <NavLink to={"/"} className={linkClass}>
+          <li className="pointer">
+            Home
+          </li>
+        </NavLink>
+        <NavLink to={"/events"} className={linkClass}>
+          <li className="pointer">
+            Events
+          </li>
+        </NavLink>
+        <NavLink to={"/mint"} className={linkClass}>
+          <li className="pointer">
+            Mint Ticket
+          </li>
+        </NavLink>
+        <NavLink to={"/tickets"} className={linkClass}>
+          <li className="pointer">
+            My Tickets
+          </li>
+        </NavLink>
       </ul>
       <div className="flex gap-2 sm:gap-4 items-center">
         <div className="flex items-center gap-3">

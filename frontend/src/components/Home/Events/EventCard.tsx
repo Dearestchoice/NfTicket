@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom"
 
 const EventCard = () => {
   return (
-    <div className="p-2 rounded-md flex flex-col gap-2 border border-white/10">
+    <Link to={`/events/${2}`} className="p-2 rounded-md flex flex-col gap-2 border border-white/10">
       <div className="flex items-center justify-center overflow-hidden rounded">
         <img src="/images/nft.webp" alt="" className="h-52 w-full object-cover" />
       </div>
@@ -12,7 +13,7 @@ const EventCard = () => {
       <p className="text-xs md:text-sm font-medium">July 10, 2024</p>
       <p className="text-xs md:text-sm font-medium">Berlin, Germany</p>
       <button className="font-semibold text-nftBlack bg-nftGreen rounded-md p-2">Buy Ticket</button>
-    </div>
+    </Link>
   )
 }
 
