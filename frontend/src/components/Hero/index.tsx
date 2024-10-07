@@ -1,4 +1,3 @@
-
 const HeroSection = ({ title }: { title: string }) => {
   return (
     <div className="relative w-full bg-cover bg-center flex items-center justify-center">
@@ -19,7 +18,7 @@ const HeroSection = ({ title }: { title: string }) => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;
