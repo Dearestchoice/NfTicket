@@ -1,4 +1,3 @@
-
 export const MenuIcon = (...props: any) => {
   return (
     <svg
@@ -18,4 +17,4 @@ export const MenuIcon = (...props: any) => {
       <line x1="4" x2="20" y1="18" y2="18" />
     </svg>
   );
-}
+};
