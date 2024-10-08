@@ -1,6 +1,6 @@
 import { useAccount } from "wagmi";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import {
   Sheet,
@@ -24,9 +24,9 @@ const Navbar = () => {
 
   return (
     <nav className="flex gap-2 items-center justify-between px-4 sm:px-6 lg:px-8 py-2 md:py-4">
-      <div className="flex items-center gap-2">
+      <Link to={"/"} className="flex items-center gap-2">
         <img src="/images/nfticket.webp" alt="" className="h-12 " />
-      </div>
+      </Link>
       <ul className="hidden lg:flex list-none gap-6 xl:gap-10 items-center justify-between font-medium font-poppins text-lg xl:text-xl">
         <NavLink to={"/"} className={linkClass}>
           <li className="pointer">Home</li>
@@ -57,7 +57,7 @@ const Navbar = () => {
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="text-black">
+          <SheetContent side="right" className="text-black font-poppins">
             <SheetTitle>
               <VisuallyHidden.Root>Navbar</VisuallyHidden.Root>
             </SheetTitle>
@@ -70,32 +70,32 @@ const Navbar = () => {
             </div>
             <div className="grid gap-4 py-4">
               <SheetTrigger asChild>
-                <NavLink to={"/"} className={linkClass}>
-                  <p className="text-lg font-medium pointer hover:text-accent transition-colors">
+                <Link to={"/"} className="bg-transparent">
+                  <p className="text-lg font-medium pointer">
                     Home
                   </p>
-                </NavLink>
+                </Link>
               </SheetTrigger>
               <SheetTrigger asChild>
-                <NavLink to={"/events"} className={linkClass}>
-                  <p className="text-lg font-medium pointer hover:text-accent transition-colors">
+                <Link to={"/events"} className="bg-transparent">
+                  <p className="text-lg font-medium pointer">
                     Events
                   </p>
-                </NavLink>
+                </Link>
               </SheetTrigger>
               <SheetTrigger asChild>
-                <NavLink to={"/mint"} className={linkClass}>
-                  <p className="text-lg font-medium pointer hover:text-accent transition-colors">
+                <Link to={"/mint"} className="bg-transparent">
+                  <p className="text-lg font-medium pointer">
                     Mint Ticket
                   </p>
-                </NavLink>
+                </Link>
               </SheetTrigger>
               <SheetTrigger asChild>
-                <NavLink to={"/tickets"} className={linkClass}>
-                  <p className="text-lg font-medium pointer hover:text-accent transition-colors">
+                <Link to={"/tickets"} className="bg-transparent">
+                  <p className="text-lg font-medium pointer">
                     My Tickets
                   </p>
-                </NavLink>
+                </Link>
               </SheetTrigger>
             </div>
           </SheetContent>
