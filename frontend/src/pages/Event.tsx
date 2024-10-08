@@ -2,7 +2,7 @@ import { DateIcon, LocationIcon, TimeIcon } from "@/components/Icons"
 
 const EventPage = () => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-10 px-4 sm:px-6 lg:px-8 my-4 sm:my-8 lg:my-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-10 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14">
       <div className="rounded-md overflow-hidden flex justify-center items-center max-h-[500px]">
         <img src="/images/event.webp" alt="" className="flex-1" />
       </div>
