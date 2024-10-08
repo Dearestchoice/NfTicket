@@ -1,6 +1,6 @@
 ## NFT Ticketing Platform
 ## Introduction
-This repository contains the code for an NFT Ticketing Platform built on blockchain technology, where each event ticket is represented as a non-fungible token (NFT). This platform provides event organizers with the ability to issue, sell, and verify tickets, while attendees can securely store and transfer their tickets on the blockchain.
+This repository contains the code for an NFT Ticketing Platform built on the Base blockchain technology, where each event ticket is represented as a non-fungible token (NFT). This platform provides event organizers with the ability to issue, sell, and verify tickets, while attendees can securely store and transfer their tickets on the blockchain.
 
 ## Key Features
 NFT Tickets: Each event ticket is a unique NFT, ensuring secure and immutable ownership.
