@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-
+import "./App.css";
 import HomePage from './pages/Home'
 import EventsPage from './pages/Events'
 import EventPage from './pages/Event'
