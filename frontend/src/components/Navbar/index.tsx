@@ -19,6 +19,10 @@ const linkClass = ({ isActive }: { isActive: boolean }) => {
   return isActive ? "text-white" : "text-[#878787]";
 };
 
+const mobileLinkClass = ({ isActive }: { isActive: boolean }) => {
+  return isActive ? "!text-white !bg-transparent" : "text-[#878787]";
+};
+
 const Navbar = () => {
   const account = useAccount();
 
@@ -57,46 +61,41 @@ const Navbar = () => {
               <span className="sr-only">Toggle navigation menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="text-black font-poppins">
+          <SheetContent
+            side="right"
+            className="text-[#878787] font-poppins px-4 bg-[#1b1b1b]"
+          >
             <SheetTitle>
               <VisuallyHidden.Root>Navbar</VisuallyHidden.Root>
             </SheetTitle>
             <SheetDescription>
               <VisuallyHidden.Root>Mobile Navbar</VisuallyHidden.Root>
             </SheetDescription>
-            <div className="flex flex-col sm:hidden gap-3">
-              <SignupButton />
+            <div className="flex items-stretch sm:hidden gap-3 my-4">
               {!account.address && <LoginButton />}
+              <SignupButton />
             </div>
             <div className="grid gap-4 py-4">
-              <SheetTrigger asChild>
-                <Link to={"/"} className="bg-transparent">
-                  <p className="text-lg font-medium pointer">
-                    Home
-                  </p>
-                </Link>
-              </SheetTrigger>
-              <SheetTrigger asChild>
-                <Link to={"/events"} className="bg-transparent">
-                  <p className="text-lg font-medium pointer">
-                    Events
-                  </p>
-                </Link>
-              </SheetTrigger>
-              <SheetTrigger asChild>
-                <Link to={"/mint"} className="bg-transparent">
-                  <p className="text-lg font-medium pointer">
-                    Mint Ticket
-                  </p>
-                </Link>
-              </SheetTrigger>
-              <SheetTrigger asChild>
-                <Link to={"/tickets"} className="bg-transparent">
-                  <p className="text-lg font-medium pointer">
-                    My Tickets
-                  </p>
-                </Link>
-              </SheetTrigger>
+              <NavLink to={"/"} className={mobileLinkClass}>
+                <SheetTrigger asChild>
+                  <p className="text-lg font-medium pointer">Home</p>
+                </SheetTrigger>
+              </NavLink>
+              <NavLink to={"/events"} className={mobileLinkClass}>
+                <SheetTrigger asChild>
+                  <p className="text-lg font-medium pointer">Events</p>
+                </SheetTrigger>
+              </NavLink>
+              <NavLink to={"/mint"} className={mobileLinkClass}>
+                <SheetTrigger asChild>
+                  <p className="text-lg font-medium pointer">Mint Ticket</p>
+                </SheetTrigger>
+              </NavLink>
+              <NavLink to={"/tickets"} className={mobileLinkClass}>
+                <SheetTrigger asChild>
+                  <p className="text-lg font-medium pointer">My Tickets</p>
+                </SheetTrigger>
+              </NavLink>
             </div>
           </SheetContent>
         </Sheet>

@@ -119,4 +119,8 @@
   body {
     @apply bg-[#1b1b1b] text-white;
   }
+
+  [data-testid="ockConnectWallet_Container"] {
+    height: 100%;
+  }
 }
