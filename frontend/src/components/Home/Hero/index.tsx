@@ -1,9 +1,14 @@
+import { Link } from "react-router-dom";
+import { useAccount } from "wagmi";
+
 import { Button } from "@/components/ui/button";
 
 import { DesktopSwiper, MobileSwiper } from "./SwiperSection";
 import MarqueeSection from "./MarqueeSection";
 
 const Hero = () => {
+  const { address } = useAccount();
+
   return (
     <div>
       <div className="heroSection mt-[90px] w-[80%] mx-auto">
@@ -14,12 +19,16 @@ const Hero = () => {
             <span className="text-[#FF1D79]">NFTs</span>
           </h2>
           <div className="mt-6 mb-12 flex flex-col gap-4 md:flex-row items-center justify-center">
-            <Button variant="connect" size="connect">
-              Connect Wallet
-            </Button>
-            <Button variant="browse" size="connect">
-              Browse Events
-            </Button>
+            {address ? null : (
+              <Button variant="connect" size="connect">
+                Connect Wallet
+              </Button>
+            )}
+            <Link to={"/events"}>
+              <Button variant="browse" size="connect">
+                Browse Events
+              </Button>
+            </Link>
           </div>
         </div>
 
