@@ -38,6 +38,9 @@ const Navbar = () => {
         <NavLink to={"/events"} className={linkClass}>
           <li className="pointer">Events</li>
         </NavLink>
+        <NavLink to={"/create"} className={linkClass}>
+          <li className="pointer">Create Event</li>
+        </NavLink>
         <NavLink to={"/mint"} className={linkClass}>
           <li className="pointer">Mint Ticket</li>
         </NavLink>
@@ -84,6 +87,11 @@ const Navbar = () => {
               <NavLink to={"/events"} className={mobileLinkClass}>
                 <SheetTrigger asChild>
                   <p className="text-lg font-medium pointer">Events</p>
+                </SheetTrigger>
+              </NavLink>
+              <NavLink to={"/create"} className={mobileLinkClass}>
+                <SheetTrigger asChild>
+                  <p className="text-lg font-medium pointer">Create Event</p>
                 </SheetTrigger>
               </NavLink>
               <NavLink to={"/mint"} className={mobileLinkClass}>
