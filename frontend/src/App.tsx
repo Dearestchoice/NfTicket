@@ -2,12 +2,15 @@ import { Route, Routes } from 'react-router-dom'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import "./App.css";
+
 import HomePage from './pages/Home'
 import EventsPage from './pages/Events'
 import EventPage from './pages/Event'
 import TicketsPage from './pages/Tickets'
 import MintPage from './pages/Mint'
+import CreateEventPage from './pages/Create';
+
+import "./App.css";
 
 function App() {
 
@@ -19,6 +22,7 @@ function App() {
           <Route path="/" element={<HomePage />}></Route>
           <Route path="/tickets" element={<TicketsPage />}></Route>
           <Route path="/mint" element={<MintPage />}></Route>
+          <Route path="/create" element={<CreateEventPage />}></Route>
           <Route path="/events" element={<EventsPage />}></Route>
           <Route path="/events/:id" element={<EventPage />}></Route>
         </Routes>
