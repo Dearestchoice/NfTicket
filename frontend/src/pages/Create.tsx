@@ -18,9 +18,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
 
 import { cn } from "@/lib/utils";
-import { Calendar } from "@/components/ui/calendar";
+import CreateButton from "@/components/Create/CreateButton";
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -58,6 +59,8 @@ const CreateEventPage = () => {
       description: "",
     },
   });
+
+  const values = form.watch();
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
     // Do something with the form values.
@@ -235,19 +238,25 @@ const CreateEventPage = () => {
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Input type="number" placeholder="Number of Tickets" {...field} />
+                  <Input
+                    type="number"
+                    placeholder="Number of Tickets"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
 
-          <Button
+          <CreateButton values={values} />
+
+          {/* <Button
             type="submit"
             className="bg-nftGreen text-nftBlack hover:bg-nftGreen"
           >
             Submit
-          </Button>
+          </Button> */}
         </form>
       </Form>
     </div>
