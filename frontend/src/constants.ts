@@ -1,4 +1,4 @@
-export const contractAddress = "0x39C71fbF58756f70D2501eaa91976DA72f07e868";
+export const contractAddress = "0x521B8Fc38BF90D1E4c45dcbe25644c3A469698b0";
 
 export const abi = [
   {
@@ -452,6 +452,56 @@ export const abi = [
         internalType: "bool",
         name: "exists",
         type: "bool",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllEvents",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "eventId",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "organizer",
+            type: "address",
+          },
+          {
+            internalType: "string",
+            name: "eventDescription",
+            type: "string",
+          },
+          {
+            internalType: "string",
+            name: "imageURI",
+            type: "string",
+          },
+          {
+            internalType: "uint256",
+            name: "maxTickets",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "mintedTickets",
+            type: "uint256",
+          },
+          {
+            internalType: "bool",
+            name: "exists",
+            type: "bool",
+          },
+        ],
+        internalType: "struct NFTicketing.Event[]",
+        name: "",
+        type: "tuple[]",
       },
     ],
     stateMutability: "view",

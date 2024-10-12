@@ -11,9 +11,9 @@ import {
 } from "../ui/sheet";
 import { Button } from "../ui/button";
 
-import LoginButton from "./LoginButton";
 import SignupButton from "./SignupButton";
 import { MenuIcon } from "./Icons";
+import ConnectButton from "./ConnectButton";
 
 const linkClass = ({ isActive }: { isActive: boolean }) => {
   return isActive ? "text-white" : "text-[#878787]";
@@ -50,8 +50,7 @@ const Navbar = () => {
       </ul>
       <div className="flex gap-2 sm:gap-4 items-center">
         <div className="hidden sm:flex items-center gap-3">
-          <SignupButton />
-          {!account.address && <LoginButton />}
+          {!account.address ? <ConnectButton /> : <SignupButton />}
         </div>
         <Sheet>
           <SheetTrigger asChild>
@@ -75,8 +74,7 @@ const Navbar = () => {
               <VisuallyHidden.Root>Mobile Navbar</VisuallyHidden.Root>
             </SheetDescription>
             <div className="flex items-stretch sm:hidden gap-3 my-4">
-              {!account.address && <LoginButton />}
-              <SignupButton />
+              {!account.address ? <ConnectButton /> : <SignupButton />}
             </div>
             <div className="grid gap-4 py-4">
               <NavLink to={"/"} className={mobileLinkClass}>
