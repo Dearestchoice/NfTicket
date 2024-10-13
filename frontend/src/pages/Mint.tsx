@@ -29,7 +29,7 @@ const MintPage = () => {
 
   return (
     <div className="font-poppins">
-      <HeroSection title="My Tickets" />
+      <HeroSection title="My Events" />
       {eventsIsPending ? (
         <Spinner />
       ) : eventsIsError ? (

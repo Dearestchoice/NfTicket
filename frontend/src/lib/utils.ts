@@ -7,7 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 
 export function formatCreatorAddress(address: string): string {
   // Ensure the input is a valid Ethereum address (42 characters, starting with '0x')
-  if (address.length !== 42 || !address.startsWith("0x")) {
+  if (address?.length !== 42 || !address?.startsWith("0x")) {
     throw new Error("Invalid Ethereum address");
   }
 

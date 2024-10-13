@@ -20,7 +20,7 @@ const UpcomingEvents = () => {
   });
 
   const eventsToDisplay =
-    (eventsData as IEvent[]).length > 4
+    (eventsData as IEvent[])?.length > 4
       ? (eventsData as IEvent[]).slice(0, 4)
       : (eventsData as IEvent[]);
 

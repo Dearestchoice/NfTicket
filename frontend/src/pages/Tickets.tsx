@@ -31,9 +31,9 @@ const TicketsPage = () => {
         <h3 className="text-xl md:text-2xl font-semibold text-center">
           An error occurred. Please try again
         </h3>
-      ) : (
-        <TicketsComp ticketsData={ticketsData as string[]} />
-      )}
+      ) : ticketsData ? (
+        <TicketsComp ticketsData={(ticketsData as string[])} />
+      ) : null}
     </div>
   );
 };

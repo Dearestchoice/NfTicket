@@ -7,7 +7,7 @@ const EventCard = ({
   eventDescription,
   // eventId,
   imageURI,
-  maxTickets,
+  // maxTickets,
   mintedTickets,
   organizer,
 }: IEvent) => {
@@ -30,7 +30,7 @@ const EventCard = ({
       <div className="flex gap-2">
         <p>Tickets Available:</p>
         <p className="font-semibold">
-          {Number(maxTickets) - Number(mintedTickets)}
+          {Number(mintedTickets)}
         </p>
       </div>
       <button className="font-semibold text-nftBlack bg-nftGreen rounded-md p-2">
