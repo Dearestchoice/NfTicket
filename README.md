@@ -1,6 +1,6 @@
 ## NFT Ticketing Platform
 
-CA: 0x39C71fbF58756f70D2501eaa91976DA72f07e868
+CA: 0xFa0cc7F20b42Ac312afC082ae655ab0B10FdA14B
 
 
 ## Introduction

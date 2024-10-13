@@ -140,6 +140,15 @@ contract NFTicketing is ERC721URIStorage {
         return userTickets[user];
     }
 
+    // Function to retrieve all tickets
+    function getAllTickets() public view returns (Ticket[] memory) {
+        Ticket[] memory allTickets = new Ticket[](nextTicketId - 1);
+        for (uint256 i = 1; i < nextTicketId; i++) {
+            allTickets[i - 1] = tickets[i];
+        }
+        return allTickets;
+    }
+
     // Function to list a ticket for sale
     function listTicketForSale(uint256 ticketId, uint256 price) public {
         require(
