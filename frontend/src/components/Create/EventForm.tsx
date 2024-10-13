@@ -26,7 +26,6 @@ export interface IFormData {
   time: string;
   imageURL?: string;
   location: string;
-  price: string;
   numOfTickets: string;
 }
 
@@ -40,7 +39,6 @@ const EventForm = () => {
     time: "",
     imageURL: "",
     location: "",
-    price: "",
     numOfTickets: "",
   });
 
@@ -61,7 +59,6 @@ const EventForm = () => {
     description,
     location,
     numOfTickets,
-    price,
     title,
   } = formData;
 
@@ -133,14 +130,6 @@ const EventForm = () => {
               placeholder="Location"
               name="location"
               value={location}
-              onChange={handleChange}
-            />
-
-            <Input
-              type="number"
-              placeholder="Ticket Price"
-              name="price"
-              value={price}
               onChange={handleChange}
             />
 
