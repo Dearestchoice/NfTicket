@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import { useAccount } from "wagmi";
 
+import ConnectButton from "@/components/Navbar/ConnectButton";
 import { Button } from "@/components/ui/button";
-
 import { DesktopSwiper, MobileSwiper } from "./SwiperSection";
 import MarqueeSection from "./MarqueeSection";
 
@@ -20,9 +20,7 @@ const Hero = () => {
           </h2>
           <div className="mt-6 mb-12 flex flex-col gap-4 md:flex-row items-center justify-center">
             {address ? null : (
-              <Button variant="connect" size="connect">
-                Connect Wallet
-              </Button>
+              <ConnectButton />
             )}
             <Link to={"/events"}>
               <Button variant="browse" size="connect">
