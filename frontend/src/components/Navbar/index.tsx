@@ -65,7 +65,7 @@ const Navbar = () => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="text-[#878787] font-poppins px-4 bg-[#1b1b1b]"
+            className="text-[#878787] font-poppins px-4 bg-[#1b1b1b] text-center"
           >
             <SheetTitle>
               <VisuallyHidden.Root>Navbar</VisuallyHidden.Root>
@@ -73,7 +73,7 @@ const Navbar = () => {
             <SheetDescription>
               <VisuallyHidden.Root>Mobile Navbar</VisuallyHidden.Root>
             </SheetDescription>
-            <div className="flex items-stretch sm:hidden gap-3 my-4">
+            <div className="flex justify-center sm:hidden gap-3 my-4">
               {!account.address ? <ConnectButton /> : <SignupButton />}
             </div>
             <div className="grid gap-4 py-4">
