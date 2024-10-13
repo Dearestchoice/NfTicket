@@ -12,15 +12,20 @@ import type {
 import type { ContractFunctionParameters } from "viem";
 
 import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
-import { IFormData } from "./EventForm";
 
-const CreateButton = ({ values }: { values: IFormData }) => {
+const ListTransaction = ({
+  ticketId,
+  price,
+}: {
+  ticketId: string;
+  price: number;
+}) => {
   const contracts = [
     {
       address: contractAddress,
       abi: abi,
-      functionName: "createEvent",
-      args: [values.title, values.imageURL, values.numOfTickets],
+      functionName: "listTicketForSale",
+      args: [ticketId, price],
     },
   ] as unknown as ContractFunctionParameters[];
 
@@ -40,10 +45,10 @@ const CreateButton = ({ values }: { values: IFormData }) => {
       onSuccess={handleSuccess}
     >
       <TransactionButton
-        disabled={!values.imageURL || !values.title || !values.numOfTickets}
+        disabled={!ticketId || !price}
         className="bg-nftGreen text-nftBlack hover:bg-nftGreen"
       />
-      <TransactionStatus>
+      <TransactionStatus className="text-nftGreen">
         <TransactionStatusLabel />
         <TransactionStatusAction />
       </TransactionStatus>
@@ -51,4 +56,4 @@ const CreateButton = ({ values }: { values: IFormData }) => {
   );
 };
 
-export default CreateButton;
+export default ListTransaction;
