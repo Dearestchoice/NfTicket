@@ -3,6 +3,7 @@ import { useReadContract } from "wagmi";
 
 import HeroSection from "@/components/Hero";
 import MintCard from "@/components/Mint/MintCard";
+import ConnectButton from "@/components/Navbar/ConnectButton";
 import { Spinner } from "@/components/Spinner";
 
 import { IEvent } from "@/types";
@@ -12,6 +13,26 @@ import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
 const MintPage = () => {
   const { address } = useAccount();
 
+  return (
+    <>
+      {address ? (
+        <MintPageDisplay address={address} />
+      ) : (
+        <div className="my-8 flex flex-col gap-2 items-center justify-center text-center font-poppins">
+          <h3 className="font-semibold text-lg md:text-2xl">Connect Wallet</h3>
+          <p className="text-[#B0B0B0] md:text-lg">
+            To proceed with this action, kindly connect your wallet.
+          </p>
+          <div className="my-4">
+            <ConnectButton />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+const MintPageDisplay = ({ address }: { address: `0x${string}` }) => {
   const {
     data: eventsData,
     isError: eventsIsError,

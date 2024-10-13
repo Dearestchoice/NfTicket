@@ -145,7 +145,7 @@ const EventForm = () => {
           </>
         ) : (
           <div className="my-8 flex flex-col gap-2 items-center justify-center text-center font-poppins">
-            <h3 className="font-semibold text-lg md:text-2xl">
+            <h3 className="font-semibold text-lg md:text-2xl text-nftWhite">
               Connect Wallet
             </h3>
             <p className="text-[#B0B0B0] md:text-lg">
