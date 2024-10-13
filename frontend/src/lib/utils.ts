@@ -16,3 +16,15 @@ export function formatCreatorAddress(address: string): string {
 
   return `${firstFour}...${lastFour}`;
 }
+
+export const mdGrid = (arr: any) => {
+  if (!arr) return 2;
+  if (arr.length < 2) return 1;
+  return 2;
+};
+
+export const lgGrid = (arr: any) => {
+  if (!arr) return 4;
+  if (arr.length < 4) return arr.length;
+  return 4;
+};

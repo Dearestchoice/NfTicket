@@ -1,23 +1,12 @@
 import { useReadContract } from "wagmi";
 
-import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
-
 import HeroSection from "@/components/Hero";
 import EventCard from "@/components/Home/Events/EventCard";
 import { Spinner } from "@/components/Spinner";
+
 import { IEvent } from "@/types";
-
-const mdGrid = (arr: any) => {
-  if (!arr) return 2;
-  if (arr.length < 2) return 1;
-  return 2;
-};
-
-const lgGrid = (arr: any) => {
-  if (!arr) return 4;
-  if (arr.length < 4) return arr.length;
-  return 4;
-};
+import { mdGrid, lgGrid } from "@/lib/utils";
+import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
 
 const EventsPage = () => {
   const {

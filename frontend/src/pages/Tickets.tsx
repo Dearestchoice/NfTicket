@@ -1,15 +1,41 @@
-import HeroSection from "@/components/Hero"
-import TicketCard from "@/components/Tickets/TicketCard"
+import { useAccount } from "wagmi";
+import { useReadContract } from "wagmi";
+
+import HeroSection from "@/components/Hero";
+import { Spinner } from "@/components/Spinner";
+import TicketsComp from "@/components/Tickets/TicketsComp";
+
+import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
 
 const TicketsPage = () => {
+  const { address } = useAccount();
+
+  const {
+    data: ticketsData,
+    isError: ticketsIsError,
+    isPending: ticketsIsPending,
+  } = useReadContract({
+    address: contractAddress,
+    abi: abi,
+    chainId: BASE_SEPOLIA_CHAIN_ID,
+    functionName: "getUserTickets",
+    args: [address],
+  });
+
   return (
     <div className="font-poppins">
       <HeroSection title="My Tickets" />
-      <div className="mx-auto grid gap-3 items-start grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 py-8 sm:py-12 lg:py-14 px-4 sm:px-6 lg:px-8">
-        {[1, 2, 3, 4].map(item => <TicketCard key={item} />)}
-      </div>
+      {ticketsIsPending ? (
+        <Spinner />
+      ) : ticketsIsError ? (
+        <h3 className="text-xl md:text-2xl font-semibold text-center">
+          An error occurred. Please try again
+        </h3>
+      ) : (
+        <TicketsComp ticketsData={ticketsData as string[]} />
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default TicketsPage
+export default TicketsPage;

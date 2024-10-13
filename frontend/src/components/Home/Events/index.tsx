@@ -5,18 +5,7 @@ import { Spinner } from "@/components/Spinner";
 
 import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
 import { IEvent } from "@/types";
-
-const mdGrid = (arr: any) => {
-  if (!arr) return 2;
-  if (arr.length < 2) return 1;
-  return 2;
-};
-
-const lgGrid = (arr: any) => {
-  if (!arr) return 4;
-  if (arr.length < 4) return arr.length;
-  return 4;
-};
+import { mdGrid, lgGrid } from "@/lib/utils";
 
 const UpcomingEvents = () => {
   const {
@@ -29,6 +18,11 @@ const UpcomingEvents = () => {
     chainId: BASE_SEPOLIA_CHAIN_ID,
     functionName: "getAllEvents",
   });
+
+  const eventsToDisplay =
+    (eventsData as IEvent[]).length > 4
+      ? (eventsData as IEvent[]).slice(0, 4)
+      : (eventsData as IEvent[]);
 
   return (
     <section className="font-poppins space-y-6 md:space-y-8 lg:space-y-10 py-10 md:py-14 lg:py-24 lg:pb-32">
@@ -43,9 +37,9 @@ const UpcomingEvents = () => {
         </h3>
       ) : (
         <div
-          className={`mx-auto grid gap-3 items-start grid-cols-1 sm:grid-cols-${mdGrid(eventsData)} lg:grid-cols-${lgGrid(eventsData)} px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14`}
+          className={`mx-auto grid gap-3 items-start grid-cols-1 sm:grid-cols-${mdGrid(eventsToDisplay)} lg:grid-cols-${lgGrid(eventsToDisplay)} px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14`}
         >
-          {(eventsData as IEvent[]).map((event) => (
+          {eventsToDisplay.map((event) => (
             <EventCard key={event.eventId} {...event} />
           ))}
         </div>
