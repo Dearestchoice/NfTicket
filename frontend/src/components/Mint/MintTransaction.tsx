@@ -47,6 +47,7 @@ const MintTransaction = ({
       <TransactionButton
         disabled={!eventId || !numOfTickets}
         className="bg-nftGreen text-nftBlack hover:bg-nftGreen"
+        text="Mint Tickets"
       />
       <TransactionStatus className="text-nftGreen">
         <TransactionStatusLabel />

@@ -23,6 +23,7 @@ const TicketCard = ({ ticketId }: { ticketId: string }) => {
     data: ticketData,
     isError: ticketIsError,
     isPending: ticketIsPending,
+    error
   } = useReadContract({
     address: contractAddress,
     abi: abi,
@@ -30,6 +31,8 @@ const TicketCard = ({ ticketId }: { ticketId: string }) => {
     functionName: "getTicketDetails",
     args: [ticketId],
   });
+
+  console.log(error)
 
   return (
     <div className="p-2 rounded-md flex flex-col gap-2 border border-white/10">

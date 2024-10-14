@@ -16,7 +16,7 @@ const TicketsPage = () => {
       {address ? (
         <TicketsPageDisplay address={address} />
       ) : (
-        <div className="my-8 flex flex-col gap-2 items-center justify-center text-center font-poppins">
+        <div className="my-8 flex flex-col gap-2 items-center justify-center text-center font-poppins px-4 sm:px-6 lg:px-8">
           <h3 className="font-semibold text-lg md:text-2xl">Connect Wallet</h3>
           <p className="text-[#B0B0B0] md:text-lg">
             To proceed with this action, kindly connect your wallet.
@@ -31,7 +31,6 @@ const TicketsPage = () => {
 };
 
 const TicketsPageDisplay = ({ address }: { address: `0x${string}` }) => {
-
   const {
     data: ticketsData,
     isError: ticketsIsError,
@@ -53,8 +52,12 @@ const TicketsPageDisplay = ({ address }: { address: `0x${string}` }) => {
         <h3 className="text-xl md:text-2xl font-semibold text-center">
           An error occurred. Please try again
         </h3>
-      ) : ticketsData ? (
-        <TicketsComp ticketsData={(ticketsData as string[])} />
+      ) : !(ticketsData as string[]) || !(ticketsData as string[]).length ? (
+        <h3 className="text-xl md:text-2xl font-semibold text-center">
+          There are currently no tickets available
+        </h3>
+      ) : (ticketsData as string[]).length ? (
+        <TicketsComp ticketsData={ticketsData as string[]} />
       ) : null}
     </div>
   );

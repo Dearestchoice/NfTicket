@@ -1,4 +1,6 @@
-export const contractAddress = "0x521B8Fc38BF90D1E4c45dcbe25644c3A469698b0";
+export const contractAddress = "0xFa0cc7F20b42Ac312afC082ae655ab0B10FdA14B";
+
+// export const contractAddress = "0x521B8Fc38BF90D1E4c45dcbe25644c3A469698b0";
 
 export const abi = [
   {
@@ -500,6 +502,56 @@ export const abi = [
           },
         ],
         internalType: "struct NFTicketing.Event[]",
+        name: "",
+        type: "tuple[]",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "getAllTickets",
+    outputs: [
+      {
+        components: [
+          {
+            internalType: "uint256",
+            name: "ticketId",
+            type: "uint256",
+          },
+          {
+            internalType: "address",
+            name: "ticketOwner",
+            type: "address",
+          },
+          {
+            internalType: "bool",
+            name: "used",
+            type: "bool",
+          },
+          {
+            internalType: "bool",
+            name: "exists",
+            type: "bool",
+          },
+          {
+            internalType: "bool",
+            name: "listedForSale",
+            type: "bool",
+          },
+          {
+            internalType: "uint256",
+            name: "price",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "eventId",
+            type: "uint256",
+          },
+        ],
+        internalType: "struct NFTicketing.Ticket[]",
         name: "",
         type: "tuple[]",
       },

@@ -37,7 +37,7 @@ const Works = () => {
               <p className="text-sm md:text-base">
                 After connecting your wallet, you can view the latest events on
                 the platform. Browse event details, availability, and pricing,
-                with easy access to mint or buy NFT tickets directly.
+                with easy access to buy NFT tickets directly.
               </p>
             </div>
           </div>
@@ -48,12 +48,12 @@ const Works = () => {
             </div>
             <div className="flex flex-col gap-2 lg:gap-3">
               <h3 className="font-semibold md:text-lg lg:text-xl">
-                Mint or Buy Your NFT Ticket
+                Buy Your NFT Ticket
               </h3>
               <p className="text-sm md:text-base">
-                Once you've selected an event, you can mint a new NFT ticket or
-                purchase one from the marketplace. The NFT ticket is securely
-                stored in your wallet and represents your entry pass.
+                Once you've selected an event, you can purchase an NFT ticket
+                from the marketplace. The NFT ticket is securely stored in your
+                wallet and represents your entry pass.
               </p>
             </div>
           </div>

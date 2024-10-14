@@ -47,6 +47,7 @@ const ListTransaction = ({
       <TransactionButton
         disabled={!ticketId || !price}
         className="bg-nftGreen text-nftBlack hover:bg-nftGreen"
+        text="List Ticket"
       />
       <TransactionStatus className="text-nftGreen">
         <TransactionStatusLabel />
