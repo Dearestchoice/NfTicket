@@ -5,7 +5,6 @@ import { Spinner } from "@/components/Spinner";
 
 import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
 import { IEvent } from "@/types";
-import { mdGrid, lgGrid } from "@/lib/utils";
 
 const UpcomingEvents = () => {
   const {
@@ -20,8 +19,8 @@ const UpcomingEvents = () => {
   });
 
   const eventsToDisplay =
-    (eventsData as IEvent[])?.length > 4
-      ? (eventsData as IEvent[]).slice(0, 4)
+    (eventsData as IEvent[])?.length > 3
+      ? (eventsData as IEvent[]).slice(0, 3)
       : (eventsData as IEvent[]);
 
   return (
@@ -35,15 +34,19 @@ const UpcomingEvents = () => {
         <h3 className="text-xl md:text-2xl font-semibold text-center">
           An error occurred. Please try again
         </h3>
-      ) : (
+      ) : !eventsToDisplay || !eventsToDisplay.length ? (
+        <h3 className="text-xl md:text-2xl font-semibold text-center">
+          There are currently no events available
+        </h3>
+      ) : eventsToDisplay.length ? (
         <div
-          className={`mx-auto grid gap-3 items-start grid-cols-1 sm:grid-cols-${mdGrid(eventsToDisplay)} lg:grid-cols-${lgGrid(eventsToDisplay)} px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14`}
+          className={`mx-auto grid gap-3 items-start grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14`}
         >
           {eventsToDisplay.map((event) => (
             <EventCard key={event.eventId} {...event} />
           ))}
         </div>
-      )}
+      ) : null}
     </section>
   );
 };

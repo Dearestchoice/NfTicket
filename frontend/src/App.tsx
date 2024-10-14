@@ -9,6 +9,7 @@ import EventPage from './pages/Event'
 import TicketsPage from './pages/Tickets'
 import MintPage from './pages/Mint'
 import CreateEventPage from './pages/Create';
+import MarketplacePage from './pages/Marketplace'
 
 import "./App.css";
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/tickets" element={<TicketsPage />}></Route>
           <Route path="/mint" element={<MintPage />}></Route>
           <Route path="/create" element={<CreateEventPage />}></Route>
+          <Route path="/marketplace" element={<MarketplacePage />}></Route>
           <Route path="/events" element={<EventsPage />}></Route>
           <Route path="/events/:id" element={<EventPage />}></Route>
         </Routes>
