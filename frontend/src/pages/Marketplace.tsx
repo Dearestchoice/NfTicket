@@ -4,7 +4,7 @@ import HeroSection from "@/components/Hero";
 import { Spinner } from "@/components/Spinner";
 
 import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
-import TicketCard from "@/components/Tickets/TicketCard";
+import TicketCard from "@/components/Marketplace/TicketCard";
 
 interface ITicket {
   ticketId: string; // ID of the ticket

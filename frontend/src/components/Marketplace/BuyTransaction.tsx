@@ -4,33 +4,49 @@ import {
   TransactionStatus,
   TransactionStatusAction,
   TransactionStatusLabel,
+  TransactionToast,
+  TransactionToastAction,
+  TransactionToastIcon,
+  TransactionToastLabel,
 } from "@coinbase/onchainkit/transaction";
 import type {
   TransactionError,
   TransactionResponse,
 } from "@coinbase/onchainkit/transaction";
-import type { ContractFunctionParameters } from "viem";
-import { ethers } from "ethers";
+import { encodeFunctionData } from "viem";
 
-import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
+import { BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
 
-const ListTransaction = ({
+const BuyTransaction = ({
   ticketId,
   price,
 }: {
   ticketId: string;
   price: string;
 }) => {
-  const amtInBigNumber = ethers.BigNumber.from(ethers.utils.parseUnits(price));
-  const value = ethers.utils.hexValue(amtInBigNumber);
-  const contracts = [
+  const buyContractAbi = [
     {
-      address: contractAddress,
-      abi: abi,
-      functionName: "listTicketForSale",
-      args: [ticketId, value],
+      type: "function",
+      name: "buyTicket",
+      inputs: [{ name: "ticketId", type: "uint256" }],
+      outputs: [],
+      stateMutability: "payable",
     },
-  ] as unknown as ContractFunctionParameters[];
+  ] as const;
+
+  const encodedBuyData = encodeFunctionData({
+    abi: buyContractAbi,
+    functionName: "buyTicket",
+    args: [BigInt(ticketId)],
+  });
+
+  const calls = [
+    {
+      to: contractAddress as `0x${string}`,
+      data: encodedBuyData,
+      value: BigInt(price),
+    },
+  ];
 
   const handleError = (err: TransactionError) => {
     console.error("Transaction error:", JSON.stringify(err));
@@ -42,7 +58,7 @@ const ListTransaction = ({
 
   return (
     <Transaction
-      contracts={contracts}
+      calls={calls}
       chainId={BASE_SEPOLIA_CHAIN_ID}
       onError={handleError}
       onSuccess={handleSuccess}
@@ -50,14 +66,19 @@ const ListTransaction = ({
       <TransactionButton
         disabled={!ticketId || !price}
         className="bg-nftGreen text-nftBlack hover:bg-nftGreen"
-        text="List Ticket"
+        text="Buy Ticket"
       />
       <TransactionStatus className="text-nftGreen">
         <TransactionStatusLabel />
         <TransactionStatusAction />
       </TransactionStatus>
+      <TransactionToast>
+        <TransactionToastIcon />
+        <TransactionToastLabel />
+        <TransactionToastAction />
+      </TransactionToast>
     </Transaction>
   );
 };
 
-export default ListTransaction;
+export default BuyTransaction;

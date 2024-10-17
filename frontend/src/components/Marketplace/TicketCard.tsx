@@ -2,10 +2,9 @@ import { useReadContract } from "wagmi";
 import { ethers } from "ethers";
 
 import { Spinner } from "@/components/Spinner";
-import ListButton from "./ListButton";
 
 import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
-// import { CodeIcon } from "./Icons";
+import BuyButton from "./BuyButton";
 
 interface ITicketData {
   [index: number]: string | number | boolean;
@@ -24,7 +23,6 @@ const TicketCard = ({ ticketId }: { ticketId: string }) => {
     data: ticketData,
     isError: ticketIsError,
     isPending: ticketIsPending,
-    error,
   } = useReadContract({
     address: contractAddress,
     abi: abi,
@@ -32,8 +30,7 @@ const TicketCard = ({ ticketId }: { ticketId: string }) => {
     functionName: "getTicketDetails",
     args: [ticketId],
   });
-
-  console.log(error);
+  console.log(ticketData);
 
   return (
     <div className="p-2 rounded-md flex flex-col gap-2 border border-white/10">
@@ -87,25 +84,19 @@ const TicketCardDisplay = ({ ticketData }: { ticketData: ITicketData }) => {
           </button>
         )}
       </div>
-      {/* <p className="text-xs md:text-sm font-medium">July 10, 2024</p>
-    <p className="text-xs md:text-sm font-medium">Berlin, Germany</p>
-    <div className="flex items-center justify-center py-4 border-b border-dashed ">
-      <CodeIcon />
-    </div> */}
       <div className="flex gap-2">
         <p>Price:</p>
         <p className="font-semibold">{amountInEther} ETH</p>
       </div>
       {ticketDetails.listedForSale ? (
-        <p className="text-lg font-semibold">On Sale</p>
-      ) : (
-        <ListButton
+        <BuyButton
           ticketId={ticketDetails.ticketId}
           ticketOwner={ticketDetails.ticketOwner}
           eventDescription={ticketDetails.eventDescription}
           imageURI={ticketDetails.eventImageURI}
+          price={ticketDetails.price}
         />
-      )}
+      ) : null}
     </>
   );
 };
