@@ -5,6 +5,7 @@ import { Spinner } from "@/components/Spinner";
 
 import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
 import BuyButton from "./BuyButton";
+import { useAccount } from "wagmi";
 
 interface ITicketData {
   [index: number]: string | number | boolean;
@@ -47,6 +48,8 @@ const TicketCard = ({ ticketId }: { ticketId: string }) => {
 };
 
 const TicketCardDisplay = ({ ticketData }: { ticketData: ITicketData }) => {
+  const { address } = useAccount();
+
   const ticketDetails = {
     ticketId: ticketData[0],
     ticketOwner: ticketData[1],
@@ -88,13 +91,17 @@ const TicketCardDisplay = ({ ticketData }: { ticketData: ITicketData }) => {
         <p className="font-semibold">{amountInEther} ETH</p>
       </div>
       {ticketDetails.listedForSale ? (
-        <BuyButton
-          ticketId={ticketDetails.ticketId}
-          ticketOwner={ticketDetails.ticketOwner}
-          eventDescription={ticketDetails.eventDescription}
-          imageURI={ticketDetails.eventImageURI}
-          price={ticketDetails.price}
-        />
+        address ? (
+          <BuyButton
+            ticketId={ticketDetails.ticketId}
+            ticketOwner={ticketDetails.ticketOwner}
+            eventDescription={ticketDetails.eventDescription}
+            imageURI={ticketDetails.eventImageURI}
+            price={ticketDetails.price}
+          />
+        ) : (
+          <p className="font-semibold text-nftWhite text-center">Connect wallet to Purchase ticket</p>
+        )
       ) : null}
     </>
   );
