@@ -1,6 +1,7 @@
+import { useEffect, useState } from "react";
 import { useAccount, useReadContract } from "wagmi";
 import { ethers } from "ethers";
-import { useQRCode } from "next-qrcode";
+import QRCode from "qrcode";
 
 import { Spinner } from "@/components/Spinner";
 import ListButton from "./ListButton";
@@ -62,8 +63,17 @@ const TicketCardDisplay = ({
     eventDescription: ticketData[6],
     eventImageURI: ticketData[7],
   };
-  const { SVG } = useQRCode();
   const { address } = useAccount();
+  const [imgUrl, setImgUrl] = useState("");
+
+  useEffect(() => {
+    QRCode.toDataURL(
+      `${import.meta.env.VITE_QR_URL}/tickets/${ticketDetails.ticketId}`,
+      function (_: any, url: any) {
+        setImgUrl(url);
+      }
+    );
+  }, []);
 
   if (checkOwner && ticketDetails.ticketOwner !== address) return null;
 
@@ -98,17 +108,7 @@ const TicketCardDisplay = ({
       </div>
       {ticketDetails.listedForSale ? (
         <div>
-          <SVG
-            text={`${import.meta.env.VITE_QR_URL}/tickets/${ticketDetails.ticketId}`}
-            options={{
-              margin: 2,
-              width: 200,
-              color: {
-                dark: "#010599FF",
-                light: "#FFBF60FF",
-              },
-            }}
-          />
+          <img src={imgUrl} alt="" className="h-40 object-cover rounded overflow-hidden" />
         </div>
       ) : null}
       <div className="flex gap-2">

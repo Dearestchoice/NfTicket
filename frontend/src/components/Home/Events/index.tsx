@@ -20,14 +20,14 @@ const UpcomingEvents = () => {
     functionName: "getAllEvents",
   });
 
-  const eventsWithTickets = (eventsData as IEvent[]).filter(
+  const eventsWithTickets = (eventsData as IEvent[])?.filter(
     (event) => event.mintedTickets
   );
 
   const eventsToDisplay =
     eventsWithTickets?.length > 3
-      ? eventsWithTickets.slice(0, 3)
-      : (eventsData as IEvent[]).slice(0, 3);
+      ? eventsWithTickets?.slice(0, 3)
+      : (eventsData as IEvent[])?.slice(0, 3);
 
   return (
     <section className="font-poppins space-y-6 md:space-y-8 lg:space-y-10 py-10 md:py-14 lg:py-24 lg:pb-32">
