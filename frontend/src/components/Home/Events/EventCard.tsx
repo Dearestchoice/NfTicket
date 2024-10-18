@@ -33,9 +33,6 @@ const EventCard = ({
           {Number(mintedTickets)}
         </p>
       </div>
-      <button className="font-semibold text-nftBlack bg-nftGreen rounded-md p-2">
-        Buy Ticket
-      </button>
     </div>
   );
 };

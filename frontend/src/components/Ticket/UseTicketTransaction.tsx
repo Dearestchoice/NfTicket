@@ -13,19 +13,13 @@ import type { ContractFunctionParameters } from "viem";
 
 import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
 
-const MintTransaction = ({
-  eventId,
-  numOfTickets,
-}: {
-  eventId: string;
-  numOfTickets: number;
-}) => {
+const UseTicketTransaction = ({ ticketId }: { ticketId: string }) => {
   const contracts = [
     {
       address: contractAddress,
       abi: abi,
-      functionName: "mintMultipleTickets",
-      args: [eventId, numOfTickets],
+      functionName: "useTicket",
+      args: [ticketId],
     },
   ] as unknown as ContractFunctionParameters[];
 
@@ -35,6 +29,9 @@ const MintTransaction = ({
 
   const handleSuccess = (response: TransactionResponse) => {
     console.log("Transaction successful", response);
+    setTimeout(() => {
+      window.location.reload();
+    }, 3000);
   };
 
   return (
@@ -45,9 +42,9 @@ const MintTransaction = ({
       onSuccess={handleSuccess}
     >
       <TransactionButton
-        disabled={!eventId || !numOfTickets}
+        disabled={!ticketId}
         className="bg-nftGreen text-nftBlack hover:bg-nftGreen"
-        text="Mint Tickets"
+        text="Use Ticket"
       />
       <TransactionStatus className="text-nftGreen">
         <TransactionStatusLabel />
@@ -57,4 +54,4 @@ const MintTransaction = ({
   );
 };
 
-export default MintTransaction;
+export default UseTicketTransaction;

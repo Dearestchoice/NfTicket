@@ -39,10 +39,13 @@ const Navbar = () => {
           <li className="pointer">Events</li>
         </NavLink>
         <NavLink to={"/create"} className={linkClass}>
-          <li className="pointer">Create Event</li>
+          <li className="pointer">Create <span className="hidden xl:inline">Event</span></li>
+        </NavLink>
+        <NavLink to={"/marketplace"} className={linkClass}>
+          <li className="pointer">Marketplace</li>
         </NavLink>
         <NavLink to={"/mint"} className={linkClass}>
-          <li className="pointer">Mint Ticket</li>
+          <li className="pointer">Mint <span className="hidden xl:inline">Ticket</span></li>
         </NavLink>
         <NavLink to={"/tickets"} className={linkClass}>
           <li className="pointer">My Tickets</li>
@@ -65,7 +68,7 @@ const Navbar = () => {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="text-[#878787] font-poppins px-4 bg-[#1b1b1b]"
+            className="text-[#878787] font-poppins px-4 bg-[#1b1b1b] text-center"
           >
             <SheetTitle>
               <VisuallyHidden.Root>Navbar</VisuallyHidden.Root>
@@ -73,7 +76,7 @@ const Navbar = () => {
             <SheetDescription>
               <VisuallyHidden.Root>Mobile Navbar</VisuallyHidden.Root>
             </SheetDescription>
-            <div className="flex items-stretch sm:hidden gap-3 my-4">
+            <div className="flex justify-center sm:hidden gap-3 my-4">
               {!account.address ? <ConnectButton /> : <SignupButton />}
             </div>
             <div className="grid gap-4 py-4">
@@ -90,6 +93,11 @@ const Navbar = () => {
               <NavLink to={"/create"} className={mobileLinkClass}>
                 <SheetTrigger asChild>
                   <p className="text-lg font-medium pointer">Create Event</p>
+                </SheetTrigger>
+              </NavLink>
+              <NavLink to={"/marketplace"} className={mobileLinkClass}>
+                <SheetTrigger asChild>
+                  <p className="text-lg font-medium pointer">Marketplace</p>
                 </SheetTrigger>
               </NavLink>
               <NavLink to={"/mint"} className={mobileLinkClass}>

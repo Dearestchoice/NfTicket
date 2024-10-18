@@ -5,7 +5,8 @@ import { Spinner } from "@/components/Spinner";
 
 import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
 import { IEvent } from "@/types";
-import { mdGrid, lgGrid } from "@/lib/utils";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const UpcomingEvents = () => {
   const {
@@ -19,10 +20,14 @@ const UpcomingEvents = () => {
     functionName: "getAllEvents",
   });
 
+  const eventsWithTickets = (eventsData as IEvent[]).filter(
+    (event) => event.mintedTickets
+  );
+
   const eventsToDisplay =
-    (eventsData as IEvent[])?.length > 4
-      ? (eventsData as IEvent[]).slice(0, 4)
-      : (eventsData as IEvent[]);
+    eventsWithTickets?.length > 3
+      ? eventsWithTickets.slice(0, 3)
+      : (eventsData as IEvent[]).slice(0, 3);
 
   return (
     <section className="font-poppins space-y-6 md:space-y-8 lg:space-y-10 py-10 md:py-14 lg:py-24 lg:pb-32">
@@ -35,15 +40,24 @@ const UpcomingEvents = () => {
         <h3 className="text-xl md:text-2xl font-semibold text-center">
           An error occurred. Please try again
         </h3>
-      ) : (
+      ) : !eventsToDisplay || !eventsToDisplay.length ? (
+        <h3 className="text-xl md:text-2xl font-semibold text-center">
+          There are currently no events available
+        </h3>
+      ) : eventsToDisplay.length ? (
         <div
-          className={`mx-auto grid gap-3 items-start grid-cols-1 sm:grid-cols-${mdGrid(eventsToDisplay)} lg:grid-cols-${lgGrid(eventsToDisplay)} px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14`}
+          className={`mx-auto grid gap-3 items-start grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-14`}
         >
           {eventsToDisplay.map((event) => (
             <EventCard key={event.eventId} {...event} />
           ))}
         </div>
-      )}
+      ) : null}
+      <div className="text-center flex items-center justify-center">
+        <Link to={"/marketplace"}>
+          <Button variant="connect">View more</Button>
+        </Link>
+      </div>
     </section>
   );
 };

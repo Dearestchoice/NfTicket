@@ -42,6 +42,7 @@ const CreateButton = ({ values }: { values: IFormData }) => {
       <TransactionButton
         disabled={!values.imageURL || !values.title || !values.numOfTickets}
         className="bg-nftGreen text-nftBlack hover:bg-nftGreen"
+        text="Create Event"
       />
       <TransactionStatus>
         <TransactionStatusLabel />

@@ -19,7 +19,7 @@ export default function ListButton({
   ticketId,
   ticketOwner,
   eventDescription,
-  imageURI
+  imageURI,
 }: {
   ticketId: string;
   ticketOwner: string;
@@ -27,7 +27,7 @@ export default function ListButton({
   eventDescription: string;
 }) {
   const { address } = useAccount();
-  const [price, setPrice] = useState<number>();
+  const [price, setPrice] = useState("");
 
   return (
     <Dialog>
@@ -69,18 +69,42 @@ export default function ListButton({
             </DialogHeader>
 
             <div className="flex flex-col gap-2 w-full my-2">
-              <Label htmlFor="name">Ticket Price</Label>
+              <Label htmlFor="name">
+                Ticket Price <span className="text-xs">(in ETH)</span>
+              </Label>
               <Input
                 type="number"
                 min={0.0}
                 className="text-nftBlack"
                 value={price}
-                onChange={(e) => setPrice(e.target.value as unknown as number)}
+                onChange={(e) => setPrice(e.target.value)}
               />
             </div>
 
             <DialogFooter className="flex items-center justify-center mt-6 gap-4">
-              <ListTransaction ticketId={ticketId} price={+price!} />
+              {price ? (
+                <ListTransaction ticketId={ticketId} price={price!} />
+              ) : (
+                <div className="flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 flex items-center justify-center gap-4 opacity-70">
+                  <div className="flex w-full flex-col gap-2">
+                    <button
+                      className="cursor-pointer active:bg-ock-primary-active w-full rounded-xl px-4 py-3 font-bold font-sans text-base leading-normal bg-nftGreen text-nftBlack hover:bg-nftGreen"
+                      type="button"
+                      disabled
+                    >
+                      <span className="font-bold font-sans text-base leading-normal text-ock-inverse flex justify-center">
+                        List Ticket
+                      </span>
+                    </button>
+                    <div className="flex justify-between text-nftGreen">
+                      <div className="font-sans text-ock-foreground text-sm leading-5">
+                        <p className="text-ock-foreground-muted"></p>
+                      </div>
+                      <div className="font-sans text-ock-foreground text-sm leading-5 min-w-[70px]"></div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </DialogFooter>
           </>
         )}
