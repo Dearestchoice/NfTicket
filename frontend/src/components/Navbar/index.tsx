@@ -31,7 +31,7 @@ const Navbar = () => {
       <Link to={"/"} className="flex items-center gap-2">
         <img src="/images/nfticket.webp" alt="" className="h-12 " />
       </Link>
-      <ul className="hidden lg:flex list-none gap-6 xl:gap-10 items-center justify-between font-medium font-poppins text-lg xl:text-xl">
+      <ul className="hidden lg:flex list-none gap-4 xl:gap-8 items-center justify-between font-medium font-poppins text-lg xl:text-xl">
         <NavLink to={"/"} className={linkClass}>
           <li className="pointer">Home</li>
         </NavLink>
