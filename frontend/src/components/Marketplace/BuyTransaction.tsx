@@ -54,6 +54,9 @@ const BuyTransaction = ({
 
   const handleSuccess = (response: TransactionResponse) => {
     console.log("Transaction successful", response);
+    setTimeout(() => {
+      window.location.reload()
+    }, 3000);
   };
 
   return (

@@ -5,6 +5,8 @@ import { Spinner } from "@/components/Spinner";
 
 import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
 import { IEvent } from "@/types";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const UpcomingEvents = () => {
   const {
@@ -18,10 +20,14 @@ const UpcomingEvents = () => {
     functionName: "getAllEvents",
   });
 
+  const eventsWithTickets = (eventsData as IEvent[]).filter(
+    (event) => event.mintedTickets
+  );
+
   const eventsToDisplay =
-    (eventsData as IEvent[])?.length > 3
-      ? (eventsData as IEvent[]).slice(0, 3)
-      : (eventsData as IEvent[]);
+    eventsWithTickets?.length > 3
+      ? eventsWithTickets.slice(0, 3)
+      : (eventsData as IEvent[]).slice(0, 3);
 
   return (
     <section className="font-poppins space-y-6 md:space-y-8 lg:space-y-10 py-10 md:py-14 lg:py-24 lg:pb-32">
@@ -47,6 +53,11 @@ const UpcomingEvents = () => {
           ))}
         </div>
       ) : null}
+      <div className="text-center flex items-center justify-center">
+        <Link to={"/marketplace"}>
+          <Button variant="connect">View more</Button>
+        </Link>
+      </div>
     </section>
   );
 };

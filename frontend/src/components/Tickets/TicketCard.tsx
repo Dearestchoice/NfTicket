@@ -1,30 +1,24 @@
-import { useReadContract } from "wagmi";
+import { useAccount, useReadContract } from "wagmi";
 import { ethers } from "ethers";
+import { useQRCode } from "next-qrcode";
 
 import { Spinner } from "@/components/Spinner";
 import ListButton from "./ListButton";
 
 import { abi, BASE_SEPOLIA_CHAIN_ID, contractAddress } from "@/constants";
-// import { CodeIcon } from "./Icons";
+import { ITicketData } from "@/types";
 
-interface ITicketData {
-  [index: number]: string | number | boolean;
-  0: string; // ID (assuming string)
-  1: string; // Address (assuming string)
-  2: boolean;
-  3: boolean;
-  4: string; // Possibly a count (assuming string)
-  5: string; // Possibly a version (assuming string)
-  6: string; // Name
-  7: string; // Image URL
-}
-
-const TicketCard = ({ ticketId }: { ticketId: string }) => {
+const TicketCard = ({
+  ticketId,
+  checkOwner,
+}: {
+  ticketId: string;
+  checkOwner: boolean;
+}) => {
   const {
     data: ticketData,
     isError: ticketIsError,
     isPending: ticketIsPending,
-    error,
   } = useReadContract({
     address: contractAddress,
     abi: abi,
@@ -32,8 +26,6 @@ const TicketCard = ({ ticketId }: { ticketId: string }) => {
     functionName: "getTicketDetails",
     args: [ticketId],
   });
-
-  console.log(error);
 
   return (
     <div className="p-2 rounded-md flex flex-col gap-2 border border-white/10">
@@ -44,13 +36,22 @@ const TicketCard = ({ ticketId }: { ticketId: string }) => {
           An error occurred. Please try again
         </h3>
       ) : ticketData ? (
-        <TicketCardDisplay ticketData={ticketData as ITicketData} />
+        <TicketCardDisplay
+          ticketData={ticketData as ITicketData}
+          checkOwner={checkOwner}
+        />
       ) : null}
     </div>
   );
 };
 
-const TicketCardDisplay = ({ ticketData }: { ticketData: ITicketData }) => {
+const TicketCardDisplay = ({
+  ticketData,
+  checkOwner,
+}: {
+  ticketData: ITicketData;
+  checkOwner: boolean;
+}) => {
   const ticketDetails = {
     ticketId: ticketData[0],
     ticketOwner: ticketData[1],
@@ -61,6 +62,10 @@ const TicketCardDisplay = ({ ticketData }: { ticketData: ITicketData }) => {
     eventDescription: ticketData[6],
     eventImageURI: ticketData[7],
   };
+  const { SVG } = useQRCode();
+  const { address } = useAccount();
+
+  if (checkOwner && ticketDetails.ticketOwner !== address) return null;
 
   const amountInEther = ticketDetails.price
     ? ethers.utils.formatUnits(ticketDetails.price, 18)
@@ -81,22 +86,40 @@ const TicketCardDisplay = ({ ticketData }: { ticketData: ITicketData }) => {
           <button className="rounded-2xl border border-[#DC3545] py-2 px-4 text-xs text-[#DC3545]">
             Used
           </button>
+        ) : ticketDetails.listedForSale ? (
+          <button className="rounded-2xl border border-[#93ef2ac3] py-2 px-4 text-xs">
+            On Sale
+          </button>
         ) : (
           <button className="rounded-2xl border border-[#28A745] py-2 px-4 text-xs">
             Active
           </button>
         )}
       </div>
-      {/* <p className="text-xs md:text-sm font-medium">July 10, 2024</p>
-    <p className="text-xs md:text-sm font-medium">Berlin, Germany</p>
-    <div className="flex items-center justify-center py-4 border-b border-dashed ">
-      <CodeIcon />
-    </div> */}
+      {ticketDetails.listedForSale ? (
+        <div>
+          <SVG
+            text={`${import.meta.env.VITE_QR_URL}/tickets/${ticketDetails.ticketId}`}
+            options={{
+              margin: 2,
+              width: 200,
+              color: {
+                dark: "#010599FF",
+                light: "#FFBF60FF",
+              },
+            }}
+          />
+        </div>
+      ) : null}
       <div className="flex gap-2">
         <p>Price:</p>
         <p className="font-semibold">{amountInEther} ETH</p>
       </div>
-      {ticketDetails.listedForSale ? (
+      {ticketDetails.used ? (
+        <p className="text-lg font-semibold text-[#DC3545]">
+          Ticket has been used
+        </p>
+      ) : ticketDetails.listedForSale ? (
         <p className="text-lg font-semibold">On Sale</p>
       ) : (
         <ListButton

@@ -30,7 +30,6 @@ const TicketCard = ({ ticketId }: { ticketId: string }) => {
     functionName: "getTicketDetails",
     args: [ticketId],
   });
-  console.log(ticketData);
 
   return (
     <div className="p-2 rounded-md flex flex-col gap-2 border border-white/10">

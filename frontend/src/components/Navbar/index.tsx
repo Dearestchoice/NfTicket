@@ -39,13 +39,13 @@ const Navbar = () => {
           <li className="pointer">Events</li>
         </NavLink>
         <NavLink to={"/create"} className={linkClass}>
-          <li className="pointer">Create Event</li>
+          <li className="pointer">Create <span className="hidden xl:inline">Event</span></li>
         </NavLink>
         <NavLink to={"/marketplace"} className={linkClass}>
           <li className="pointer">Marketplace</li>
         </NavLink>
         <NavLink to={"/mint"} className={linkClass}>
-          <li className="pointer">Mint Ticket</li>
+          <li className="pointer">Mint <span className="hidden xl:inline">Ticket</span></li>
         </NavLink>
         <NavLink to={"/tickets"} className={linkClass}>
           <li className="pointer">My Tickets</li>

@@ -36,7 +36,6 @@ export default function ImageComp({
     try {
       setUploading(true);
       const upload = await pinata.upload.file(file);
-      console.log(upload);
 
       const ipfsUrl = await pinata.gateways.convert(upload.IpfsHash);
       setFormData((prev) => ({

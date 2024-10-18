@@ -53,7 +53,7 @@ const TicketsPageDisplay = ({ address }: { address: `0x${string}` }) => {
           An error occurred. Please try again
         </h3>
       ) : !(ticketsData as string[]) || !(ticketsData as string[]).length ? (
-        <h3 className="text-xl md:text-2xl font-semibold text-center">
+        <h3 className="text-xl md:text-2xl font-semibold text-center py-6">
           There are currently no tickets available
         </h3>
       ) : (ticketsData as string[]).length ? (
