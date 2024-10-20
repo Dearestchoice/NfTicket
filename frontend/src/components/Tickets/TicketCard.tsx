@@ -20,6 +20,7 @@ const TicketCard = ({
     data: ticketData,
     isError: ticketIsError,
     isPending: ticketIsPending,
+    error,
   } = useReadContract({
     address: contractAddress,
     abi: abi,
@@ -27,7 +28,7 @@ const TicketCard = ({
     functionName: "getTicketDetails",
     args: [ticketId],
   });
-
+  console.log(error);
   return (
     <div className="p-2 rounded-md flex flex-col gap-2 border border-white/10">
       {ticketIsPending ? (
@@ -108,7 +109,11 @@ const TicketCardDisplay = ({
       </div>
       {ticketDetails.listedForSale ? (
         <div>
-          <img src={imgUrl} alt="" className="h-40 object-cover rounded overflow-hidden" />
+          <img
+            src={imgUrl}
+            alt=""
+            className="h-40 object-cover rounded overflow-hidden"
+          />
         </div>
       ) : null}
       <div className="flex gap-2">
