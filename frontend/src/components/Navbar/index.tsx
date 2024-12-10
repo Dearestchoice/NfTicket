@@ -1,4 +1,3 @@
-import { useAccount } from "wagmi";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { NavLink, Link } from "react-router-dom";
 
@@ -11,9 +10,10 @@ import {
 } from "../ui/sheet";
 import { Button } from "../ui/button";
 
-import SignupButton from "./SignupButton";
+// import SignupButton from "./SignupButton";
 import { MenuIcon } from "./Icons";
-import ConnectButton from "./ConnectButton";
+// import ConnectButton from "./ConnectButton";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const linkClass = ({ isActive }: { isActive: boolean }) => {
   return isActive ? "text-white" : "text-[#878787]";
@@ -24,7 +24,6 @@ const mobileLinkClass = ({ isActive }: { isActive: boolean }) => {
 };
 
 const Navbar = () => {
-  const account = useAccount();
 
   return (
     <nav className="flex gap-2 items-center justify-between px-4 sm:px-6 lg:px-8 py-2 md:py-4">
@@ -39,13 +38,17 @@ const Navbar = () => {
           <li className="pointer">Events</li>
         </NavLink>
         <NavLink to={"/create"} className={linkClass}>
-          <li className="pointer">Create <span className="hidden xl:inline">Event</span></li>
+          <li className="pointer">
+            Create <span className="hidden xl:inline">Event</span>
+          </li>
         </NavLink>
         <NavLink to={"/marketplace"} className={linkClass}>
           <li className="pointer">Marketplace</li>
         </NavLink>
         <NavLink to={"/mint"} className={linkClass}>
-          <li className="pointer">Mint <span className="hidden xl:inline">Ticket</span></li>
+          <li className="pointer">
+            Mint <span className="hidden xl:inline">Ticket</span>
+          </li>
         </NavLink>
         <NavLink to={"/tickets"} className={linkClass}>
           <li className="pointer">My Tickets</li>
@@ -53,7 +56,7 @@ const Navbar = () => {
       </ul>
       <div className="flex gap-2 sm:gap-4 items-center">
         <div className="hidden sm:flex items-center gap-3">
-          {!account.address ? <ConnectButton /> : <SignupButton />}
+          <ConnectButton accountStatus="avatar" chainStatus="icon" showBalance={false} />
         </div>
         <Sheet>
           <SheetTrigger asChild>
@@ -77,7 +80,7 @@ const Navbar = () => {
               <VisuallyHidden.Root>Mobile Navbar</VisuallyHidden.Root>
             </SheetDescription>
             <div className="flex justify-center sm:hidden gap-3 my-4">
-              {!account.address ? <ConnectButton /> : <SignupButton />}
+            <ConnectButton accountStatus="avatar" chainStatus="icon" showBalance={false} />
             </div>
             <div className="grid gap-4 py-4">
               <NavLink to={"/"} className={mobileLinkClass}>

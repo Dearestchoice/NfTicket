@@ -12,6 +12,8 @@ import CreateEventPage from './pages/Create';
 import MarketplacePage from './pages/Marketplace'
 import TicketPage from './pages/Ticket'
 import PageNotFound from './pages/404'
+import RequestPage from './pages/Request'
+import PayPage from './pages/Pay'
 
 import "./App.css";
 
@@ -28,6 +30,8 @@ function App() {
           <Route path="/mint" element={<MintPage />}></Route>
           <Route path="/create" element={<CreateEventPage />}></Route>
           <Route path="/marketplace" element={<MarketplacePage />}></Route>
+          <Route path="/request" element={<RequestPage />}></Route>
+          <Route path="/pay" element={<PayPage />}></Route>
           <Route path="/events" element={<EventsPage />}></Route>
           <Route path="/events/:id" element={<EventPage />}></Route>
           <Route path="*" element={<PageNotFound />} />
